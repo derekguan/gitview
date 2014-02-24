@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="navbar navbar-inverse navbar-fixed-top"style="background-color: #66CC99">
+	<div class="container">
+		<h3 align="center" style="color:#006699">GIT VIEW &nbsp;<small>May Know You Better Than Yourself</small></h3>
+        </div>
+</div>
+<div class="container">
+	<br/>
+	<br/>
+	<br/>
+	<h4><li><a href=/viewapp/index>Home</a></li></h4>
+	<h4><li><a href=/viewapp/search>Branch Details</a></li></h4>
+	<h4><li><a href=/viewapp/interim_report>Interim Report</a></li></h4>
+	<h4><li><a href=/viewapp/team_report>Team Report</a></li></h4>
+	<h3>Project List</h3>
+	{% if project_list %}
+	<table class="table table-striped">
+	{% for project in project_list %}
+	<tr>
+		<td><a href=/viewapp/project/{{project.id}}>{{project}}</a></td>
+		<td><a href=/viewapp/project/{{project.id}}>{{project.url}}</a></td>
+	</tr>
+	{%endfor%}
+	</table>
+	{%endif%}
+	<h3>Developer List</h3>
+	{% if author_list %}
+	<table class="table table-striped">
+	{% for author in author_list %}
+	<tr>
+		<td><a href=author/{{author.id}}>{{author.kerb_name}}</a></td>
+		<td><a href=author/{{author.id}}>{{author.email}}</a></td>
+	</tr>
+	{%endfor%}
+	</table>
+	{%endif%}
+</div>
+{% endblock %}

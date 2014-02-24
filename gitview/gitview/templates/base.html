@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>gitview</title>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.min.css" />
+    <script src="{{ STATIC_URL }}js/jquery.js" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js" type="text/javascript"></script>
+
+    {% block customjs %}{% endblock %}
+    {% block customstyle %}{% endblock %}
+</head>
+<body>
+{% block content %}Content of gitview{% endblock %}
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="navbar navbar-inverse navbar-fixed-top"style="background-color: #66CC99">
+    <div class="container">
+        <h3 align="center" style="color:#006699">GIT&nbsp;VIEW&nbsp;&nbsp;&nbsp;<small>May Know You Better Than Yourself</small></h3>
+    </div>
+</div>
+{%if project%}
+<div class="container">
+    <br/><br/><br/>
+    <h4><li><a href=/viewapp/index>Home</a></li></h4>
+    <h4><li><a href=/viewapp/search>Branch Details</a></li></h4>
+    <h4><li><a href=/viewapp/interim_report>Interim Report</a></li></h4>
+    <h4><li><a href=/viewapp/team_report>Team Report</a></li></h4>
+    {% if branches_list %}
+    {%for branch in branches_list%}
+    <table  align="center" class="table table-striped">
+        <h2 align="left">{{project}}&nbsp;{{branch.name}}</h2>
+        <tr>
+            <td>Branch name:&nbsp;&nbsp;{{branch.name}}</td>
+            <td>Start Date:&nbsp;&nbsp;{{branch.start_date}}</td>
+            <td>Update Date:&nbsp;&nbsp;{{branch.latest_update}}</td>
+            <td>Latest Commit:&nbsp;&nbsp;{{branch.latest_commit}}</td>
+        </tr>
+        <tr>
+            <td>Total Commits:&nbsp;&nbsp;{{branch.total_patches}}</td>
+            <td>Total lines:&nbsp;&nbsp;{{branch.total_lines}}</td>
+            <td>Total Inserted(+):&nbsp;&nbsp;{{branch.total_lines_inserted}}</td>
+            <td>Total Deleted(-):&nbsp;&nbsp;{{branch.total_lines_deleted}}</td>
+        </tr>
+    </table>
+    {%endfor%}
+    {%endif%}
+</div>
+{%endif%}
+{% endblock %}

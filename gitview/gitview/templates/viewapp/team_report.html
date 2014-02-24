@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="navbar navbar-inverse navbar-fixed-top"style="background-color: #66CC99">
+    <div class="container">
+        <h3 align="center" style="color:#006699">GIT VIEW&nbsp;&nbsp;&nbsp;<small>May Know You Better Than Yourself</small></h3>
+    </div>
+</div>
+<div class="container">
+    <br/>
+    <br/>
+    <br/>
+    <h4><li><a href=/viewapp/index>Home</a></li></h4>
+    <h4><li><a href=/viewapp/search>Branch Details</a></li></h4>
+    <h4><li><a href=/viewapp/interim_report>Interim Report</a></li></h4>
+    <h4><li><a href=/viewapp/team_report>Team Report</a></li></h4>
+    <form name="team_report" action="team_report" method="get">
+        <h3>Choose Date Range  </h3>
+        <table class="table table-striped">
+            <tr>
+                <td> From: </td>
+                <td>
+                    <select class="form-control"  name="year_from">
+                        <option value=2014 selected="selected">2014</option>
+                        {%for year in time_range.year%}
+                        <option value={{year}}>{{year}}</option>
+                        {%endfor%}
+                </select></td>
+                <td>
+                    <select class="form-control"  name="month_from">
+                        {%for month in time_range.month%}
+                        <option value={{month}}>{{month}}</option>
+                        {%endfor%}
+                </select></td>
+                <td>
+                    <select class="form-control"  name="day_from">
+                        {%for day in time_range.day%}
+                        <option value={{day}}>{{day}}</option>
+                        {%endfor%}
+                </select></td>
+            </tr>
+            <tr>
+                <td> To: </td>
+                <td>
+                    <select class="form-control"  name="year_to">
+                        <option value=2014 selected="selected">2014</option>
+                        {%for year in time_range.year%}
+                        <option value={{year}}>{{year}}</option>
+                        {%endfor%}
+                </select></td>
+                <td>
+                    <select class="form-control"  name="month_to">
+                        {%for month in time_range.month%}
+                        <option value={{month}}>{{month}}</option>
+                        {%endfor%}
+                </select></td>
+                <td>
+                    <select class="form-control"  name="day_to">
+                        {%for day in time_range.day%}
+                        <option value={{day}}>{{day}}</option>
+                        {%endfor%}
+                </select></td>
+            </tr>
+        </table>
+        <table class="table table-hover">
+            <tr>
+                <td><h4>Projects</h4></td>
+                <td><h4>Team Members</h4></td>
+            </tr>
+            <tr>
+                <td>
+                    <select multiple class="form-control" name=projects size="15">
+                        <option value="all" >all</option> 
+                        {% if project_list %}
+                        {% for project in project_list %}
+                        <option value={{project.id}} >{{project.name}}</option>
+                        {%endfor%}
+                        {%endif%}
+                    </select>
+                </td>
+                <td>
+                    <select multiple class="form-control" name=developers size="15">
+                        <option value="all" selected="selected">all</option>
+                        {% if author_list %}
+                        {% for author in author_list %}
+                        <option value={{author.id}}>{{author.kerb_name}}&nbsp;({{author.email}})</option>
+                        {%endfor%}
+                        {%endif%}
+                    </select>
+                </td>
+            </tr>
+            <tr><input type="submit" value="Generate" type="button" class="btn btn-default"/></tr>
+        </table>
+    </form>
+</div>
+{% endblock %}

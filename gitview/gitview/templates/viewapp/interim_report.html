@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="navbar navbar-inverse navbar-fixed-top"style="background-color: #66CC99">
+    <div class="container">
+        <h3 align="center" style="color:#006699">GIT&nbsp;VIEW&nbsp;&nbsp;&nbsp;<small>May Know You Better Than Yourself</small></h3>
+    </div>
+</div>
+<div class="container">
+    <br/>
+    <br/>
+    <br/>
+    <h4><li><a href=/viewapp/index>Home</a></li></h4>
+    <h4><li><a href=/viewapp/search>Branch Details</a></li></h4>
+    <h4><li><a href=/viewapp/interim_report>Interim Report</a></li></h4>
+    <h4><li><a href=/viewapp/team_report>Team Report</a></li></h4>
+    <h3>Choose Date </h3>
+    <form name="interim_report" action="interim_report" method="get" >
+        <table class="table">
+            <tr>
+                <td> Date:</td>
+                <td>
+                    <select name="year" class="form-control">
+                        {%for year in time_range.year%}
+                        <option value={{year}}>{{year}}</option>
+                        {%endfor%}
+                </select></td>
+                <td>
+                    <select name="month" class="form-control">
+                        {%for month in time_range.month%}
+                        <option value={{month}}>{{month}}</option>
+                        {%endfor%}
+                </select ></td>
+                <td>
+                    <select name="day" class="form-control">
+                        {%for day in time_range.day%}
+                        <option value={{day}}>{{day}}</option>
+                        {%endfor%}
+                </select></td>
+                <td> <input type="submit" value="Generate reports" type="button" class="btn btn-default"/></td>
+            </tr>
+        </table>
+    </form>
+    {%if day_projects_list%}
+    <br/>
+    <h3>Day Report of Projects&nbsp;&nbsp;&nbsp;&nbsp;<small>{{day_from}}&nbsp;&nbsp;......&nbsp;&nbsp;{{day_to}}</small></h3>
+    <table class="table table-striped">
+        <tr>
+            <td>Project name</td>
+            <td>Total Commits</td>
+            <td>Total lines</td>
+            <td>Total Inserted(+)</td>
+            <td>Total Deleted(-)</td>
+        </tr>
+        {%for project in day_projects_list%}
+        <tr>
+            <td>{{project.0}}</td>
+            <td>Commits:&nbsp;&nbsp;{{project.4}}</td>
+            <td>Lines:&nbsp;&nbsp;{{project.3}}</td>
+            <td>Inserted(+):&nbsp;&nbsp;{{project.1}}</td>
+            <td>Deleted(-):&nbsp;&nbsp;{{project.2}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+    {%endif%}
+    {%if day_developers_list%}
+    <br/>
+    <h3>Day Report of Developers&nbsp;&nbsp;&nbsp;&nbsp;<small>{{day_from}}&nbsp;&nbsp;......&nbsp;&nbsp;{{day_to}}</small></h3>
+    <table class="table table-striped">
+        <tr>
+            <td>Developer name</td>
+            <td>Email</td>
+            <td>Total Commits</td>
+            <td>Total lines</td>
+            <td>Total Inserted(+)</td>
+            <td>Total Deleted(-)</td>
+        </tr>
+        {%for developer in day_developers_list%}
+        <tr>
+            <td>{{developer.0}}</td>
+            <td>{{developer.1}}</td>
+            <td>Commits:&nbsp;&nbsp;{{developer.5}}</td>
+            <td>Lines:&nbsp;&nbsp;{{developer.4}}</td>
+            <td>Inserted(+):&nbsp;&nbsp;{{developer.2}}</td>
+            <td>Deleted(-):&nbsp;&nbsp;{{developer.3}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+    {%endif%}
+    {%if week_projects_list%}
+    <br/>
+    <h3>Week Report of Projects&nbsp;&nbsp;&nbsp;&nbsp;<small>{{week_from }}&nbsp;&nbsp;......&nbsp;&nbsp;{{week_to}}</small></h3>
+    <table class="table table-striped">
+        <tr>
+            <td>Project name</td>
+            <td>Total Commits</td>
+            <td>Total lines</td>
+            <td>Total Inserted(+)</td>
+            <td>Total Deleted(-)</td>
+        </tr>
+        {%for project in week_projects_list%}
+        <tr>
+            <td>{{project.0}}</td>
+            <td>Commits:&nbsp;&nbsp;{{project.4}}</td>
+            <td>Lines:&nbsp;&nbsp;{{project.3}}</td>
+            <td>Inserted(+):&nbsp;&nbsp;{{project.1}}</td>
+            <td>Deleted(-):&nbsp;&nbsp;{{project.2}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+    {%endif%}
+    {%if week_developers_list%}
+    <br/>
+    <h3>Week Report of Developers&nbsp;&nbsp;&nbsp;&nbsp;<small>{{week_from }}&nbsp;&nbsp;......&nbsp;&nbsp;{{week_to}}</small></h3>
+    <table class="table table-striped">
+        <tr>
+            <td>Developer name</td>
+            <td>Email</td>
+            <td>Total Commits</td>
+            <td>Total lines</td>
+            <td>Total Inserted(+)</td>
+            <td>Total Deleted(-)</td>
+        </tr>
+        {%for developer in week_developers_list%}
+        <tr>
+            <td>{{developer.0}}</td>
+            <td>{{developer.1}}</td>
+            <td>Commits:&nbsp;&nbsp;{{developer.5}}</td>
+            <td>Lines:&nbsp;&nbsp;{{developer.4}}</td>
+            <td>Inserted(+):&nbsp;&nbsp;{{developer.2}}</td>
+            <td>Deleted(-):&nbsp;&nbsp;{{developer.3}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+    {%endif%}
+    {%if month_projects_list%}
+    <br/>
+    <h3>Month Report of Projects&nbsp;&nbsp;&nbsp;&nbsp;<small>{{month_from }}&nbsp;&nbsp;......&nbsp;&nbsp;{{month_to}}</small></h3>
+    <table class="table table-striped">
+        <tr>
+            <td>Project name</td>
+            <td>Total Commits</td>
+            <td>Total lines</td>
+            <td>Total Inserted(+)</td>
+            <td>Total Deleted(-)</td>
+        </tr>
+        {%for project in month_projects_list%}
+        <tr>
+            <td>{{project.0}}</td>
+            <td>Commits:&nbsp;&nbsp;{{project.4}}</td>
+            <td>Lines:&nbsp;&nbsp;{{project.3}}</td>
+            <td>Inserted(+):&nbsp;&nbsp;{{project.1}}</td>
+            <td>Deleted(-):&nbsp;&nbsp;{{project.2}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+    {%endif%}
+    {%if month_developers_list%}
+    <br/>
+    <h3>Month Report of Developers&nbsp;&nbsp;&nbsp;&nbsp;<small>{{month_from }}&nbsp;&nbsp;......&nbsp;&nbsp;{{month_to}}</small></h3>
+    <table class="table table-striped">
+        <tr>
+            <td>Developer name</td>
+            <td>Email</td>
+            <td>Total Commits</td>
+            <td>Total lines</td>
+            <td>Total Inserted(+)</td>
+            <td>Total Deleted(-)</td>
+        </tr>
+        {%for developer in month_developers_list%}
+        <tr>
+            <td>{{developer.0}}</td>
+            <td>{{developer.1}}</td>
+            <td>Commits:&nbsp;&nbsp;{{developer.5}}</td>
+            <td>Lines:&nbsp;&nbsp;{{developer.4}}</td>
+            <td>Inserted(+):&nbsp;&nbsp;{{developer.2}}</td>
+            <td>Deleted(-):&nbsp;&nbsp;{{developer.3}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+    {%endif%}
+</div>
+{% endblock %}

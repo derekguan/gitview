@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="navbar navbar-inverse navbar-fixed-top"style="background-color: #66CC99">
+    <div class="container">
+        <h3 align="center" style="color:#006699">GIT&nbsp;VIEW&nbsp;&nbsp;&nbsp;<small>May Know You Better Than Yourself</small></h3>
+</div></div>
+<div class="container">
+    <br/>
+    <br/>
+    <br/>
+    <h4><li><a href=/viewapp/index>Home</a></li></h4>
+    <h4><li><a href=/viewapp/search>Branch Details</a></li></h4>
+    <h4><li><a href=/viewapp/interim_report>Interim Report</a></li></h4>
+    <h4><li><a href=/viewapp/team_report>Team Report</a></li></h4>
+    <br/>
+    {%if author%}
+    <h3>{{author}}</h3>
+    <table class="table table-striped">
+        <tr><td>author id:</td><td>{{author.id}}</td></tr>
+        <tr><td>author name:</td><td>{{author.kerb_name}}</td></tr>
+        <tr><td>author projects amount:</td><td>{{author.projects_amount}}</td></tr>
+        <tr><td>author work type:</td><td>{{author.work_type}}</td></tr>
+        <tr><td>author email:</td><td>{{author.email}}</td></tr>
+    </table>
+    <h3>Choose Date Range:</h3>
+    <form name="search_author" action="search_show" method="get">
+        <table class="table ">
+            <tr>
+                <td>
+                    Developer:
+                </td>
+                <td>
+                    <select class="form-control" name="author">
+                        <option value={{author.id}}>{{author}}</option>
+                    </select>
+                </td>
+                <td>Branch:</td>
+                <td>
+                    <select class="form-control" name="branch">
+                        {%for branch in branch_list%}
+                        <option value={{branch.id}}>{{branch}}</option>
+                        {%endfor%}
+                </select></td>
+            </tr>
+            <tr>
+                <td> From: </td>
+                <td>
+                    <select class="form-control" name="year_from">
+                        {%for year in time_range.year%}
+                        <option value={{year}}>{{year}}</option>
+                        {%endfor%}
+                </select></td>
+                <td>
+                    <select class="form-control" name="month_from">
+                        {%for month in time_range.month%}
+                        <option value={{month}}>{{month}}</option>
+                        {%endfor%}
+                </select></td>
+                <td>
+                    <select class="form-control" name="day_from">
+                        {%for day in time_range.day%}
+                        <option value={{day}}>{{day}}</option>
+                        {%endfor%}
+                </select></td>
+            </tr>
+            <tr>
+                <td> To: </td>
+                <td>
+                    <select class="form-control" name="year_to">
+                        {%for year in time_range.year%}
+                        <option value={{year}}>{{year}}</option>
+                        {%endfor%}
+                </select></td>
+                <td>
+                    <select class="form-control" name="month_to">
+                        {%for month in time_range.month%}
+                        <option value={{month}}>{{month}}</option>
+                        {%endfor%}
+                </select></td>
+                <td>
+                    <select class="form-control" name="day_to">
+                        {%for day in time_range.day%}
+                        <option value={{day}}>{{day}}</option>
+                        {%endfor%}
+                </select></td>
+            </tr>
+        </table>
+        <p></p>
+        <input type="submit" value="Search" type="button" class="btn btn-default"/>
+    </form>
+    {%if commits_data%}
+    <h3>Total Data:</h3>
+    <table class="table table-striped">
+        <tr><td>Date Range:<td>{{date_from}}---{{date_to}}</td></tr>
+        <tr><td>Commits Amount:<td>{{commits_data.0}}</td></tr>
+        <tr><td>Lines Inserted(+):</td><td>{{commits_data.1}}</td></tr>
+        <tr><td>Lines Deleted(-):</td><td>{{commits_data.2}}</td></tr>
+        <tr><td>Total Lines:</td><td>{{commits_data.3}}</td></tr>
+        </table>
+        {%endif%}
+        {%if commit_list%}
+        <h3>Commits Detail:</h3>
+        <table class="table table-striped">
+            <tr><td>commit-id</td><td>submit date</td><td>classification</td><td>branch</td><td>developer</td><td>total_files</td><td>lines_inserted(+)</td><td>lines_deleted(-)</td><td>total_lines</td></tr>
+            {%for commit in commit_list%}
+            <tr><td>{{commit.commit_id}}</td><td>{{commit.submit_date}}</td><td>{{commit.classification}}</td><td>{{commit.branch}}</td><td>{{commit.developer}}</td><td>total_files:{{commit.total_files}}</td><td>lines_inserted(+):{{commit.lines_inserted}}</td><td>lines_deleted(-):{{commit.lines_deleted}}</td><td>total_lines:{{commit.total_lines}} </td></tr>
+            {%endfor%}
+        </table>
+        {%endif%}
+        {%endif%}
+    </div>
+{% endblock %}

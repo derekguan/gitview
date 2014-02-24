@@ -1,0 +1,11 @@
+*.pyc
+*.swp
+*~
+*.pdf
+PDFs/
+cert/newca.crt
+log/refresh.log
+projects/
+static/report
+templates/report
+
