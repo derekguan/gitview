@@ -18,7 +18,7 @@ setup(
     long_description=read('README.md'),
     author='Zhilong Yang',
     author_email='nuovince@gmail.com',
-    url='https://github.com/vince67/gitview.git;a=summary',
+    url='https://github.com/vince67/gitview.git',
     license='GPLv3',
     keywords='git statistics',
 
